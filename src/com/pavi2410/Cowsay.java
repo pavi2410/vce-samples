@@ -11,20 +11,22 @@ import com.google.appinventor.components.common.ComponentCategory;
 import com.google.appinventor.components.runtime.AndroidViewComponent;
 import com.google.appinventor.components.runtime.ComponentContainer;
 
-@DesignerComponent(version = 1,
-        description = "Simple Label extension",
+@DesignerComponent(version = 4,
+        description = "Cowsay extension",
         category = ComponentCategory.EXTENSION,
         iconName = "images/extension.png",
         hasCustomMock = true)
 @SimpleObject(external = true)
-public class SimpleLabel extends AndroidViewComponent {
+public class Cowsay extends AndroidViewComponent {
 
     private TextView tv;
 
-    public SimpleLabel(ComponentContainer container) {
+    public Cowsay(ComponentContainer container) {
         super(container.$form());
 
         tv = new TextView(container.$context());
+
+        Say("Moo");
 
         container.$add(this);
     }
@@ -36,7 +38,7 @@ public class SimpleLabel extends AndroidViewComponent {
 
     @DesignerProperty
     @SimpleProperty
-    public void Text(String text) {
-        tv.setText(text);
+    public void Say(String message) {
+        tv.setText(CowsayLib.say(message));
     }
 }
